@@ -90,9 +90,10 @@ module OmniAuth
           'client_id' => client.id,
           'client_secret' => client.secret,
           'code' => request.params['code'],
-          'grant_type' => 'authorization_code'
+          'grant_type' => 'authorization_code',
+          'redirect_uri' => options[:redirect_uri]
         }.merge(token_params.to_hash(symbolize_keys: true))
-        client.get_token(params, deep_symbolize(options.auth_token_params))
+        client.get_token(params, {:mode => :query})
       end
 
     end
